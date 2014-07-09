@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import sys
 import json
+import string
 
 
 ###############################################################################
@@ -20,7 +21,8 @@ def main():
         
         if 'delete' not in tweet_dict:
             words = tweet_dict['text'].split()
-            words_utf8=[palabra.encode('utf-8') for palabra in words]
+            words_utf8=[(palabra.encode('utf-8')).lower() for palabra in words]
+            words_utf8=[palabra.translate(string.maketrans("",""), string.punctuation) for palabra in words_utf8]
             
             #Para cada palabra, buscamos si está en el diccionario y calculamos el sentimiento del tweet
             sentimiento=0

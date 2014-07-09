@@ -3,6 +3,7 @@ from __future__ import division
 import sys
 import json
 from collections import Counter
+import string
 
 
 
@@ -21,7 +22,10 @@ def main():
             palabras= tweet_dict['text'].split()
 
             for palabra in palabras:
-                listaconrepeticiones.append(palabra.encode('utf-8'))
+                palabra=(palabra.encode('utf-8')).lower()
+                palabra=palabra.translate(string.maketrans("",""), string.punctuation)
+                listaconrepeticiones.append(palabra)
+
                     
     
     #Número total de palabras

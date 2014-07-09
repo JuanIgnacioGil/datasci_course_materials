@@ -2,6 +2,7 @@
 from __future__ import division
 import sys
 import json
+import string
 
 
 ###############################################################################
@@ -35,6 +36,8 @@ def main():
             
                 words = tweet_dict['text'].split()
                 words_utf8=[palabra.encode('utf-8') for palabra in words]
+                words_utf8=[palabra.lower() for palabra in words_utf8]
+                words_utf8=[palabra.translate(string.maketrans("",""), string.punctuation) for palabra in words_utf8]
                 
                 #Para cada palabra, buscamos si está en el diccionario y calculamos el sentimiento del tweet
                 sentimiento=0
