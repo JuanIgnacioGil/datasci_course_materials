@@ -13,7 +13,6 @@ mr = MapReduce.MapReduce()
 
 def mapper(record):
 
-    clase = record[0]
     order_id = record[1]
     
     mr.emit_intermediate(order_id,record)
@@ -23,12 +22,12 @@ def mapper(record):
 def reducer(order_id,list_of_records):
     
     #Buscamos la orden
-    order=[r for r in list_of_records if r[0] == "order"]
+    order=[r for r in list_of_records if r[0] == "order"][0]
     
 
     for r in list_of_records:
         if r[0] == "line_item":
-            linea=order[0]+r
+            linea=order+r
             mr.emit(linea)
 
 # Do not modify below this line
