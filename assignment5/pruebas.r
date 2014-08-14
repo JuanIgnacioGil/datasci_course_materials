@@ -1,0 +1,1 @@
+createDataPartition(seaflow_21min, 2,list = FALSE)
